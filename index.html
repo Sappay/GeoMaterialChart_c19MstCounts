@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+	//Load dataTable
+        var data = new google.visualization.arrayToDataTable([
+          ['Country', 'Confirmed Cases', 'Deaths'],
+          ['United States', 1040488, 60999],
+          ['Spain', 236899, 24275],
+          ['Italy', 203591, 27682],
+          ['United Kingdom', 165221, 26097],
+          ['France', 165093, 24087],
+          ['Germany', 161539, 6467],
+		  ['Turkey', 117589, 3081],
+		  ['Russia', 99399, 972],
+		  ['Iran', 93657, 5957],
+		  ['Mainland China', 82862,	4633],
+		  ['Brazil', 79685,	5513],
+		  ['Canada', 52865, 3155],
+		  ['Belgium', 47859, 7501]
+        ]);
+	//the option is where you customise your chart: the width, chart title and subtitle, bar orientation, series position and axes label are all set here. 
+        var options = {
+          width: 1000,
+          chart: {
+            title: 'Most Covid-19 Affected Countries',
+            subtitle: 'Total Deaths on the Left axes and Confirmed cases on the right'
+          },
+          bars: 'horizontal', // Required for Material Bar Charts.
+          series: {
+            0: { axis: 'deaths' }, // Bind series 0 to an axis named 'deaths'.
+            1: { axis: 'confirmed' } // Bind series 1 to an axis named 'confirmed'.
+          },
+          axes: {
+            x: {
+              deaths: {label: 'Covid-19 Confirmed Cases as at 04/17/2020'}, // Creates Bottom x-axis.
+              confirmed: {side: 'top', label: 'Covid-19 Deaths as at 04/17/2020'} // Creates Top x-axis.
+            }
+          }
+        };
+
+      var chart = new google.charts.Bar(document.getElementById('dual_x_div')); //Creates chart object
+      chart.draw(data, options); //draw function uses data and option to draw chart
+    };
+		//creates chart  and id and div
+    </script>
+  </head>
+  <body>
+    <div id="dual_x_div" style="width: 100%; height: 100%;"></div> 
+  </body>
+</html>
